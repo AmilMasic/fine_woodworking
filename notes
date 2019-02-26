@@ -1,0 +1,11 @@
+-CLI for displaying featured articles on fine_woodworking
+
+user gets greeted
+
+display a list of featured articles
+
+ask for selection of article
+
+1 - 4
+
+display the article.
