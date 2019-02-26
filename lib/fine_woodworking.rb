@@ -1,6 +1,2 @@
-require "fine_woodworking/version"
-
-module FineWoodworking
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./fine_woodworking/version"
+require_relative "./cli"

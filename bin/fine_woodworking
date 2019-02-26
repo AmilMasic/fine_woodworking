@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
+require "./lib/fine_woodworking"
 
 FineWoodworking::CLI.new.call

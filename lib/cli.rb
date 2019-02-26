@@ -4,4 +4,4 @@ class FineWoodworking::CLI
     puts "Today's Daily Deals:"
   end
 
-  
+end
