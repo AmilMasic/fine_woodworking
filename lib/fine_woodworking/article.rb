@@ -39,11 +39,31 @@ class FineWoodworking::Article
   end
 
   def self.scrape_articles
+    # binding.pry
+    articles = []
+    binding.pry
     doc = Nokogiri::HTML(open("https://www.finewoodworking.com/"))
     doc.css(".hp__feautered__story").each do |article|
-      title = article.css(".title").text
-    binding.pry
-  end
+        title = article.css(".title").text
+        category = article.css(".channel").text
+        url = article.css("a").attribute("href").value
+        teaser = article.css(".teaser").text
+        article_hash = {
+          :title => title,
+          :category => category,
+          :url => url,
+          :teaser => teaser
+        }
+
+      articles << article_hash
+      end
+      articles
+      
+      # title = doc.css(".hp__featured__story").first.css(".title").text
+      # teaser = doc.css(".hp__featured__story").first.css(".teaser").text
+      # category = doc.css(".hp__featured__story").first.css(".channel").text
+      # url = doc.css(".hp__featured__story").first.css("a").attribute("href").value
+
 
   end
 
