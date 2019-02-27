@@ -2,12 +2,12 @@ class FineWoodworking::Article
   attr_accessor :title, :category, :url
 
   def self.today
-    puts <<-DOC.gsub /^\s+/, ""
-    1 . Article 1
-    2. Article 2
-    3. Article 3
-    4. Article 4
-    DOC
+    # puts <<-DOC.gsub /^\s+/, ""
+    # 1 . Article 1
+    # 2. Article 2
+    # 3. Article 3
+    # 4. Article 4
+    # DOC
 
     article_1 = self.new
     article_1.title = "The Family Violin"
