@@ -43,7 +43,7 @@ class FineWoodworking::Article
     articles = []
     binding.pry
     doc = Nokogiri::HTML(open("https://www.finewoodworking.com/"))
-    doc.css(".hp__feautered__story").each do |article|
+    doc.css(".hp__featured__story").each do |article|
         title = article.css(".title").text
         category = article.css(".channel").text
         url = article.css("a").attribute("href").value
@@ -58,7 +58,7 @@ class FineWoodworking::Article
       articles << article_hash
       end
       articles
-      
+
       # title = doc.css(".hp__featured__story").first.css(".title").text
       # teaser = doc.css(".hp__featured__story").first.css(".teaser").text
       # category = doc.css(".hp__featured__story").first.css(".channel").text
