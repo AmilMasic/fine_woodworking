@@ -1,7 +1,6 @@
 class FineWoodworking::CLI
 
   def call
-
     list_articles
     menu
     goodbye
@@ -12,7 +11,6 @@ class FineWoodworking::CLI
     @articles = FineWoodworking::Article.today
     @articles.each.with_index(1) do |article, i|
       puts "#{i}. #{article.title} - #{article.category}. - #{article.teaser}"
-      
     end
   end
 
