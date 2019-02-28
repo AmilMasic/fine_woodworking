@@ -15,15 +15,19 @@ class FineWoodworking::Article
   end
 
   def self.scrape_articles
+    #scraping the articles starts here
+    #using each because the articles have the same class hp__featured__story
     @articles = []
 
     doc = Nokogiri::HTML(open("https://www.finewoodworking.com/"))
     doc.css(".hp__featured__story").each do |article|
+      #storing scraped data into variables
         title = article.css(".title").text
         category = article.css(".channel").text
         article_url = article.css("a").attribute("href").value
         teaser = article.css(".teaser").text
 
+        #storing the variables into hash
         article_hash = {
           :title => title,
           :category => category,
