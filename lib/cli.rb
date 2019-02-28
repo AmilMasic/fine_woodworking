@@ -1,3 +1,4 @@
+require "pry"
 class FineWoodworking::CLI
 
   def call
@@ -9,8 +10,9 @@ class FineWoodworking::CLI
   def list_articles
     puts "Today's Articles on the front page of FineWoodworking."
     @articles = FineWoodworking::Article.today
+    # binding.pry
     @articles.each.with_index(1) do |article, i|
-      puts "#{i}. #{article.title} - #{article.category}. - #{article.teaser}"
+      puts "#{i}. #{article[:title]} - #{article[:category]}. - #{article[:teaser]}"
     end
   end
 
@@ -20,9 +22,16 @@ class FineWoodworking::CLI
         puts "Enter the number of which article you want to read. Type list if you want to see the list of articles again. Type exit if you would like to quit the program."
         input = gets.strip.downcase
         if input.to_i > 0
+
           article = @articles[input.to_i-1]
-          puts "#{article.title} - #{article.category}"
-        elsif input == "list"
+          # binding.pry
+
+          FineWoodworking::Article.scrape_article_content(article)
+          # selected_article[:content]
+          # binding.pry
+          puts "#{article[:author]}"
+          puts "#{article[:content]}"
+          elsif input == "list"
           list_articles
         else
           puts "Input error, please select number 1 - 4, list or exit."
