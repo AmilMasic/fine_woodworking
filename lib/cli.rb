@@ -21,20 +21,19 @@ class FineWoodworking::CLI
       while input != "exit"
         puts "Enter the number of which article you want to read. Type list if you want to see the list of articles again. Type exit if you would like to quit the program."
         input = gets.strip.downcase
-        if input.to_i > 0
+        if input.to_i.between?(1,4)
 
           article = @articles[input.to_i-1]
-          # binding.pry
 
           FineWoodworking::Article.scrape_article_content(article)
-          # selected_article[:content]
-          # binding.pry
           puts "#{article[:author]}"
           puts "#{article[:content]}"
           elsif input == "list"
           list_articles
+        # elsif input.to_i < 4
+        #   puts "Invalid article number, please select article between 1 to 4."
         else
-          puts "Input error, please select number 1 - 4, list or exit."
+          puts "Input error, please select article 1 - 4, list or exit."
         end
       end
     end
