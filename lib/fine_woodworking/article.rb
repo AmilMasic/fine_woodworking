@@ -1,10 +1,23 @@
-require "open-uri"
-require "nokogiri"
-require "pry"
-
-
 class FineWoodworking::Article
   attr_accessor :title, :category, :article_url, :teaser, :author, :content
+
+  @@articles = []
+
+  def self.all
+    @@articles
+  end
+
+  def save
+    @@articles << self
+  end
+
+  def initialize(title, category, article_url, teaser)
+    @title = title
+    @category = category
+    @article_url = article_url
+    @teaser = teaser
+    save
+  end
 
   def self.today
     self.scrape_articles

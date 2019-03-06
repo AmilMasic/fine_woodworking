@@ -4,17 +4,18 @@ class FineWoodworking::CLI
   def call
     list_articles
     menu
-    goodbye
+    # goodbye
   end
 
   def list_articles
     puts "Today's Articles on the front page of FineWoodworking."
 
     # Scraping the articles to provide a list view
-    @articles = FineWoodworking::Article.today
+    FineWoodworking::Scraper.scrape_articles
+    @articles = FineWoodworking::Article.all
     # assingning a number to index to list the articles correctly
     @articles.each.with_index(1) do |article, i|
-      puts "#{i}. #{article[:title]} - #{article[:category]}. - #{article[:teaser]}"
+      puts "#{i}. #{article.title} - #{article.category}. - #{article.teaser}"
     end
   end
 
@@ -30,13 +31,15 @@ class FineWoodworking::CLI
 
           #scraping the content of the selected article, just to avoid scraping too much
 
-          FineWoodworking::Article.scrape_article_content(article)
-          puts "#{article[:author]}"
-          puts "#{article[:content]}"
+          FineWoodworking::Scraper.scrape_article_content(article)
+          puts "#{article.author}"
+          puts "#{article.content}"
 
         elsif input == "list"
           #providing a list view for the user
           list_articles
+        elsif input == "exit"
+          goodbye
         else
           puts "Input error, please select article 1 - 4, list or exit."
         end
